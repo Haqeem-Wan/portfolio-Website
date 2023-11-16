@@ -3,6 +3,8 @@ body {
     padding: 0;
 }
 
+/* Header */
+
 header {
     background-color: black;
     background-image: url("../media/placeholder1.jpg");
@@ -11,10 +13,25 @@ header {
     padding: 20px;
 }
 
+.parallex {
+    /* Set a specific height */
+    min-height: 500px; 
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Section */
+
 section {
     background-color: aquamarine;
     height : 1000px;
 }
+
+/* Footer */
 
 footer {
     background-color: blanchedalmond;
