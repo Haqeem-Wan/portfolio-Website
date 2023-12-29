@@ -1,0 +1,11 @@
+.scaledImage {
+    max-width: 80%;
+    max-height: 80%;
+    width: auto;
+    height: auto;
+    position: absolute;
+   }
+
+   .image-container {
+    position: relative;
+   }

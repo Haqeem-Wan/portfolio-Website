@@ -14,7 +14,7 @@ const handleClick = (event: MouseEvent) => console.log(event);
   return (
     <>
       <h1>Test Document</h1>
-      {items.length === 0 && <p>No Item Foundd</p>}
+      {items.length === 0 && <p>No Item Found</p>}
       <ul className="list-group">
         {items.map((item) => (
           <li
