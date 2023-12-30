@@ -10,18 +10,24 @@ import birdsImage from "../assets/birds.png";
 
 function ParallaxFrame() {
   return (
-    <MouseParallaxContainer className="image-container">
-      <MouseParallaxChild factorX={0.03} factorY={0.05}>
-        <img className="scaledImage" src={fieldImage} alt="Field Background" style={{zIndex: 1}} />
-      </MouseParallaxChild>
+    <MouseParallaxContainer className={`image-container`}>
+      <div>
+        <MouseParallaxChild factorX={-0.03} factorY={-0.05}>
+          <img className={"field"} src={fieldImage} alt="Field Background" loading="eager"/>
+        </MouseParallaxChild>
+      </div>
 
-      <MouseParallaxChild factorX={0.07} factorY={0.08}>
-        <img className="scaledImage" src={skyDiversImage} alt="Skydivers" style={{zIndex: 2}}/>
-      </MouseParallaxChild>
+      <div> 
+        <MouseParallaxChild factorX={-0.09} factorY={-0.1}>
+          <img className={"skydivers"} src={skyDiversImage} alt="Skydivers" loading="eager"/>
+        </MouseParallaxChild>
+      </div>
 
-      <MouseParallaxChild factorX={0.1} factorY={0.12}>
-        <img className="scaledImage" src={birdsImage} alt="Birds" style={{zIndex: 3}}/>
-      </MouseParallaxChild>
+      <div>
+        <MouseParallaxChild factorX={-0.2} factorY={-0.22}>
+          <img  src={birdsImage} alt="Birds" loading="eager"/>
+        </MouseParallaxChild>
+      </div>
     </MouseParallaxContainer>
   );
 }

@@ -1,11 +1,38 @@
-.scaledImage {
-    max-width: 80%;
-    max-height: 80%;
-    width: auto;
-    height: auto;
-    position: absolute;
-   }
-
-   .image-container {
+.image-container {
     position: relative;
+}
+
+.image-container img {
+    /* Put the code here */
+    width : 81.5%;
+    height: auto;
+    object-fit: cover;
+    transform: scale(1.5);
+}
+
+.field {
+    position : absolute;
+    z-index : 1;
+}
+
+.skydivers {
+    position: absolute;
+    z-index: 2;
+}
+
+.birds {
+    z-index : 3;
+    height : auto;
+}
+
+.video-container {
+    position: relative;
+   }
+   .left-text, .right-text {
+    position: absolute;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+   }
+   .fade-in {
+    opacity: 1;
    }
