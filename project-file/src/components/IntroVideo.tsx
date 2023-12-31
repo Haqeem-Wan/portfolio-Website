@@ -1,23 +1,24 @@
-import React, { useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "../App.css";
 
-interface IntroVideoProps {
-  videoUrl: string;
-}
+type VideoProps = {
+  src: string;
+};
 
-const IntroVideo: React.FC<IntroVideoProps> = ({ videoUrl }) => {
+const VideoComponent: React.FC<VideoProps> = ({ src }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const leftTextRef = useRef<HTMLDivElement>(null);
-  const rightTextRef = useRef<HTMLDivElement>(null);
+  const [showLeftText, setShowLeftText] = useState(false);
+  const [showRightText, setShowRightText] = useState(false);
 
   useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
         if (entry.isIntersecting && videoRef.current) {
           videoRef.current.play();
         }
-      });
-    });
+      },
+      { threshold: 0.1 }
+    );
 
     if (videoRef.current) {
       observer.observe(videoRef.current);
@@ -31,34 +32,23 @@ const IntroVideo: React.FC<IntroVideoProps> = ({ videoUrl }) => {
   }, []);
 
   useEffect(() => {
-    setTimeout(() => {
-      if (leftTextRef.current) {
-        leftTextRef.current.classList.add("fade-in");
-      }
-      if (rightTextRef.current) {
-        rightTextRef.current.classList.add("fade-in");
-      }
-    }, 2000); // Delay of 2 seconds
+    if (videoRef.current) {
+      videoRef.current.addEventListener("ended", () => {
+        setShowLeftText(true);
+        setShowRightText(true);
+      });
+    }
   }, []);
 
   return (
-    <div className="video-container">
-      <video
-        ref={videoRef}
-        src={videoUrl}
-        autoPlay
-        muted
-        loop
-        playsInline
-      ></video>
-      <div ref={leftTextRef} className="left-text">
-        Hey there
-      </div>
-      <div ref={rightTextRef} className="right-text">
-        I'm Haqeem Wan
+    <div>
+      <video ref={videoRef} src={src} autoPlay muted loop />
+      <div className="text-container">
+        {showLeftText && <p className="left-text">Hey there</p>}
+        {showRightText && <p className="right-text">I'm Haqeem Wan</p>}
       </div>
     </div>
   );
 };
 
-export default IntroVideo;
+export default VideoComponent;

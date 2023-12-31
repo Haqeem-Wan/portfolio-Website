@@ -1,28 +1,44 @@
+.background-colour-website {
+    background-color: rgb(66, 66, 66);
+   }
+
 .image-container {
     position: relative;
+    height : 100vh;
+    width :auto;
+    overflow: hidden;
 }
 
 .image-container img {
-    /* Put the code here */
     width : 81.5%;
     height: auto;
     object-fit: cover;
     transform: scale(1.5);
+    object-fit: cover;
 }
 
 .field {
     position : absolute;
     z-index : 1;
+    animation: fadeInFirst 1.5s ease;
+}
+
+.nameImage {
+    position : absolute;
+    z-index : 2;
+    animation: fadeInSecond 2s ease;
 }
 
 .skydivers {
     position: absolute;
-    z-index: 2;
+    z-index: 3;
+    animation: fadeInThird 2.75s ease;
 }
 
 .birds {
-    z-index : 3;
-    height : auto;
+    position: relative;
+    z-index : 4;
+    animation: fadeInFourth 3.25s ease;
 }
 
 .video-container {
@@ -35,4 +51,71 @@
    }
    .fade-in {
     opacity: 1;
+}
+
+.text-container {
+    position: relative;
+    overflow: hidden;
    }
+   
+.left-text, .right-text {
+    position: absolute;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.left-text {
+    transform: translateX(-100%);
+}
+
+.right-text {
+    transform: translateX(100%);
+}
+
+.show-text {
+    opacity: 1;
+    transform: translateX(0);
+}
+   
+/* Animations */
+
+@keyframes fadeInFirst{
+    from { opacity: 0; }
+    to { opacity: 1; }
+   }
+
+@keyframes fadeInSecond {
+    0% { opacity: 0; }
+    40% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes fadeInThird {
+    0% { opacity: 0; }
+    70% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes fadeInFourth {
+    0% { opacity: 0; }
+    75% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* Adjustments */
+
+@media screen and (max-width: 600px) {
+    .image-container {
+        height: 50vh; /* reduce the height of the container when the window size is less than 600px */
+     }
+     
+    .field {
+        transform: translateX(calc(var(--mouseX) * 0.4));
+    }
+    .skydivers {
+        transform: translateX(calc(var(--mouseX) * 0.8));
+    }
+    .birds {
+        transform: translateX(calc(var(--mouseX) * 1.6));
+    }
+}

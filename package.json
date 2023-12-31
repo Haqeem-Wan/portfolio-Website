@@ -3,6 +3,7 @@
     "react-parallax-mouse": "^2.1.0",
     "react-scroll-parallax": "^3.4.5",
     "react-three-fiber": "^6.0.13",
-    "three": "^0.159.0"
+    "three": "^0.159.0",
+    "use-image": "^1.1.1"
   }
 }
