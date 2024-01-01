@@ -41,42 +41,58 @@
     animation: fadeInFourth 3.25s ease;
 }
 
-.video-container {
+.react-player__control-bar, .react-player__preview-light, .react-player__shadow {
+    display: none !important;
+ }
+   
+ .react-player {
+    max-width: 100%; /* To ensure the video does not overflow the container */
+ }
+ 
+ .parent-container {
     position: relative;
-   }
-   .left-text, .right-text {
-    position: absolute;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-   }
-   .fade-in {
-    opacity: 1;
-}
-
-.text-container {
-    position: relative;
+    width: 100%;
+    height: 100vh;
     overflow: hidden;
-   }
+ }
    
-.left-text, .right-text {
+ .video-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+ }
+   
+ .text-container {
     position: absolute;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-}
-
-.left-text {
-    transform: translateX(-100%);
-}
-
-.right-text {
-    transform: translateX(100%);
-}
-
-.show-text {
-    opacity: 1;
-    transform: translateX(0);
-}
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+ }
    
+ .left-text {
+    font-size: 4em;
+ }
+   
+ .right-text {
+    font-size: 4em;
+ }
+ 
+ .fade-enter {
+    opacity: 0;
+ }
+ 
+ .fade-enter-active {
+    opacity: 1;
+    transition: opacity 3s ease-in-out;
+ }
+ 
 /* Animations */
 
 @keyframes fadeInFirst{

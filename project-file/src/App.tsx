@@ -8,8 +8,7 @@ function App() {
   return (
     <div className="background-colour-website">
       <ParallaxFrame />
-      <ListGroup />
-      <IntroVideo src={"../assets/testVideo1.mp4"} />
+      <IntroVideo />
     </div>
   );
 }

@@ -1,54 +1,67 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useRef, useEffect, useState } from "react";
+import ReactPlayer from "react-player";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 import "../App.css";
 
-type VideoProps = {
-  src: string;
-};
-
-const VideoComponent: React.FC<VideoProps> = ({ src }) => {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [showLeftText, setShowLeftText] = useState(false);
-  const [showRightText, setShowRightText] = useState(false);
+function IntroVideo() {
+  const playerRef = useRef<ReactPlayer | null>(null);
+  const [playing, setPlaying] = useState(false);
+  const [videoEnded, setVideoEnded] = useState(false);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && videoRef.current) {
-          videoRef.current.play();
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setPlaying(true);
+        } else {
+          setPlaying(false);
         }
-      },
-      { threshold: 0.1 }
-    );
+      });
+    });
 
-    if (videoRef.current) {
-      observer.observe(videoRef.current);
+    const currentPlayer = playerRef.current;
+    if (currentPlayer) {
+      observer.observe(currentPlayer.wrapper);
     }
 
     return () => {
-      if (videoRef.current) {
-        observer.unobserve(videoRef.current);
+      if (currentPlayer) {
+        observer.unobserve(currentPlayer.wrapper);
       }
     };
   }, []);
 
-  useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.addEventListener("ended", () => {
-        setShowLeftText(true);
-        setShowRightText(true);
-      });
-    }
-  }, []);
-
   return (
-    <div>
-      <video ref={videoRef} src={src} autoPlay muted loop />
-      <div className="text-container">
-        {showLeftText && <p className="left-text">Hey there</p>}
-        {showRightText && <p className="right-text">I'm Haqeem Wan</p>}
+    <>
+      <div className="parent-container">
+        <div className={`video-container ${videoEnded ? "show-text" : ""}`}>
+          <ReactPlayer
+            ref={playerRef}
+            url="../../public/videos/testVideo1.mp4"
+            playing={playing}
+            loop={false}
+            muted={true}
+            controls={false}
+            className="react-player"
+            onEnded={() => {
+              console.log("Video Has Ended");
+              setVideoEnded(true);
+            }}
+          />
+          <TransitionGroup>
+            {videoEnded && (
+              <CSSTransition key="text" timeout={3000} classNames="fade">
+                <div className="text-container">
+                  <div className="left-text">Hey there!</div>
+                  <div className="right-text">I'm Haqeem Wan</div>
+                </div>
+              </CSSTransition>
+            )}
+          </TransitionGroup>
+        </div>
       </div>
-    </div>
+    </>
   );
-};
+}
 
-export default VideoComponent;
+export default IntroVideo;
