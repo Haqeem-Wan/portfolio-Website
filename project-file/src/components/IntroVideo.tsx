@@ -37,7 +37,7 @@ function IntroVideo() {
         <div className={`video-container ${videoEnded ? "show-text" : ""}`}>
           <ReactPlayer
             ref={playerRef}
-            url="../../public/videos/testVideo1.mp4"
+            url="../../public/videos/testVideo2.mp4"
             playing={playing}
             loop={false}
             muted={true}
@@ -52,8 +52,12 @@ function IntroVideo() {
             {videoEnded && (
               <CSSTransition key="text" timeout={3000} classNames="fade">
                 <div className="text-container">
-                  <div className="left-text">Hey there!</div>
-                  <div className="right-text">I'm Haqeem Wan</div>
+                  <div className="left-text-container">
+                    <div className="left-text">Hey there!</div>
+                  </div>
+                  <div className="right-text-container">
+                    <div className="right-text">I'm Haqeem Wan</div>
+                  </div>
                 </div>
               </CSSTransition>
             )}

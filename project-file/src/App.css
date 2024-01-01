@@ -44,7 +44,7 @@
 .react-player__control-bar, .react-player__preview-light, .react-player__shadow {
     display: none !important;
  }
-   
+ 
  .react-player {
     max-width: 100%; /* To ensure the video does not overflow the container */
  }
@@ -52,10 +52,9 @@
  .parent-container {
     position: relative;
     width: 100%;
-    height: 100vh;
     overflow: hidden;
  }
-   
+ 
  .video-container {
     position: relative;
     display: flex;
@@ -64,24 +63,24 @@
     width: 100%;
     height: 100%;
  }
-   
- .text-container {
+ 
+ .left-text-container, .right-text-container {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    top: 50%;
+    transform: translateY(-50%);
  }
-   
- .left-text {
-    font-size: 4em;
+ 
+ .left-text-container {
+    left: calc(50% - 41vw); /* Adjust the -50vw value as needed */
  }
-   
- .right-text {
+ 
+ .right-text-container {
+    right: calc(50% - 47vw); /* Adjust the -50vw value as needed */
+ }
+ 
+ .left-text, .right-text {
     font-size: 4em;
+    color: white;
  }
  
  .fade-enter {
@@ -92,6 +91,7 @@
     opacity: 1;
     transition: opacity 3s ease-in-out;
  }
+ 
  
 /* Animations */
 
